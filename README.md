@@ -12,7 +12,7 @@ A stylish, interactive terminal-based portfolio website with a retro CRT aesthet
 - **Multiple Themes**: Choose from 5 different themes (Cyberpunk, Sakura, Summer, Dracula, Winter)
 - **CRT Effects**: Retro scanlines, flicker, and glitch animations for an authentic old-school terminal feel
 - **Responsive Design**: Works on desktop and mobile devices
-- **Smart Auto-Scroll**: Automatically scrolls to show new content with intelligent user control
+- <del>**Smart Auto-Scroll**: Automatically scrolls to show new content with intelligent user control</del> (Work In Progress)
 - **Loading Screen**: Boot-up animation simulating a system startup
 
 ## Commands
