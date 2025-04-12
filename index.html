@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="terminal">
+        <div id="output"></div>
+        <div class="input-line">
+            <span id="prompt">visitor@portfolio:~$</span>
+            <input type="text" id="input" autofocus>
+        </div>
+    </div>
+    
+    <!-- Load modules in the correct order -->
+    <script src="js/contents.js"></script>
+    <script src="js/file-system.js"></script>
+    <script src="js/commands.js"></script>
+    <script src="js/terminal.js"></script>
+    <script src="js/loading-screen.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

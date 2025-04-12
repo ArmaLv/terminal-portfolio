@@ -1,0 +1,416 @@
+:root {
+    /* Default Cyberpunk theme */
+    --bg-color: black;
+    --text-color: #00ff00;
+    --glow-color: #00ff00;
+    --scanline-color: rgba(0, 255, 0, 0.05);
+}
+
+/* Sakura theme */
+[data-theme="sakura"] {
+    --bg-color: #2d1b2e;
+    --text-color: #ffb7c5;
+    --glow-color: #ffb7c5;
+    --scanline-color: rgba(255, 183, 197, 0.05);
+}
+
+/* Summer theme */
+[data-theme="summer"] {
+    --bg-color: #1a1a2e;
+    --text-color: #ffd700;
+    --glow-color: #ffd700;
+    --scanline-color: rgba(255, 215, 0, 0.05);
+}
+
+/* Dracula theme */
+[data-theme="dracula"] {
+    --bg-color: #282a36;
+    --text-color: #bd93f9;
+    --glow-color: #bd93f9;
+    --scanline-color: rgba(189, 147, 249, 0.05);
+}
+
+/* Winter theme */
+[data-theme="winter"] {
+    --bg-color: #1a1a2e;
+    --text-color: #a8d8ea;
+    --glow-color: #a8d8ea;
+    --scanline-color: rgba(168, 216, 234, 0.05);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Fira Code', monospace;
+    font-size: 16px;
+    line-height: 1.2;
+    background-color: #0a0a0a;
+    color: #f0f0f0;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    animation: flicker 0.15s infinite;
+}
+
+/* CRT Scanlines */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: 1000;
+}
+
+/* CRT Flicker */
+@keyframes flicker {
+    0% { opacity: 0.97; }
+    5% { opacity: 0.95; }
+    10% { opacity: 0.9; }
+    15% { opacity: 0.95; }
+    20% { opacity: 0.98; }
+    25% { opacity: 0.95; }
+    30% { opacity: 0.9; }
+    35% { opacity: 0.95; }
+    40% { opacity: 0.98; }
+    45% { opacity: 0.95; }
+    50% { opacity: 0.9; }
+    55% { opacity: 0.95; }
+    60% { opacity: 0.98; }
+    65% { opacity: 0.95; }
+    70% { opacity: 0.9; }
+    75% { opacity: 0.95; }
+    80% { opacity: 0.98; }
+    85% { opacity: 0.95; }
+    90% { opacity: 0.9; }
+    95% { opacity: 0.95; }
+    100% { opacity: 0.98; }
+}
+
+#terminal {
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-y: auto;
+    cursor: text;
+}
+
+/* Input line styling */
+.input-line {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    word-break: break-all;
+    position: relative;
+    font-size: inherit;
+    color: var(--text-color);
+    text-shadow: 0 0 5px var(--glow-color);
+}
+
+/* Prompt styling */
+.prompt {
+    color: var(--text-color);
+    margin-right: 16px;
+    font-weight: bold;
+    white-space: normal;
+    display: inline-block;
+    font-size: inherit;
+    text-shadow: 0 0 5px var(--glow-color);
+}
+
+/* Input field styling */
+#input {
+    display: flex;
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-family: 'Fira Code', monospace;
+    font-size: inherit;
+    outline: none;
+    flex-grow: 1;
+    padding: 0;
+    margin: 0;
+    caret-color: var(--text-color);
+    text-shadow: 0 0 5px var(--glow-color);
+    animation: glitch 5s infinite;
+}
+
+/* Output line styling */
+.output-line {
+    margin-bottom: 5px;
+    white-space: nowrap;
+    display: block;
+    font-size: inherit;
+    color: var(--text-color);
+}
+
+.output-line .prompt {
+    margin-right: 16px;
+}
+
+.output-line .command {
+    margin-left: 0;
+    padding-left: 0;
+    display: inline-block;
+    white-space: nowrap;
+    color: var(--text-color);
+    text-shadow: 0 0 5px var(--glow-color);
+    font-family: 'Fira Code', monospace;
+    font-size: inherit;
+    animation: glitch 5s infinite;
+}
+
+.output-line:hover {
+    animation: randomGlitch 0.3s infinite;
+}
+
+.output-line pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* Enhanced Glitch Text Animation */
+@keyframes glitch {
+    0% {
+        text-shadow: 0.05em 0 0 #ff00c1, -0.05em -0.025em 0 #00fff9, -0.025em 0.05em 0 #fcff00;
+    }
+    14% {
+        text-shadow: 0.05em 0 0 #ff00c1, -0.05em -0.025em 0 #00fff9, -0.025em 0.05em 0 #fcff00;
+    }
+    15% {
+        text-shadow: -0.05em -0.025em 0 #ff00c1, 0.025em 0.025em 0 #00fff9, -0.05em -0.05em 0 #fcff00;
+    }
+    49% {
+        text-shadow: -0.05em -0.025em 0 #ff00c1, 0.025em 0.025em 0 #00fff9, -0.05em -0.05em 0 #fcff00;
+    }
+    50% {
+        text-shadow: 0.025em 0.05em 0 #ff00c1, 0.05em 0 0 #00fff9, 0 -0.05em 0 #fcff00;
+    }
+    99% {
+        text-shadow: 0.025em 0.05em 0 #ff00c1, 0.05em 0 0 #00fff9, 0 -0.05em 0 #fcff00;
+    }
+    100% {
+        text-shadow: -0.025em 0 0 #ff00c1, -0.025em -0.025em 0 #00fff9, -0.025em -0.05em 0 #fcff00;
+    }
+}
+
+/* Apply glitch effect to all text elements */
+body, .terminal, .input-line, .prompt, .output-line {
+    animation: glitch 5s infinite;
+}
+
+.terminal {
+    width: 100%;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Theme variables */
+:root {
+    /* Cyberpunk theme (default) */
+    --bg-color: #0a0a0a;
+    --text-color: #00ff00;
+    --prompt-color: #00ff00;
+    --accent-color: #ff00ff;
+    --border-color: #333;
+    --glow-color: rgba(0, 255, 0, 0.5);
+}
+
+/* Sakura theme */
+[data-theme="sakura"] {
+    --bg-color: #2d1b2e;
+    --text-color: #f8e3e3;
+    --prompt-color: #ff9ecd;
+    --accent-color: #ff9ecd;
+    --border-color: #4a2b4d;
+    --glow-color: rgba(255, 158, 205, 0.5);
+}
+
+/* Summer theme */
+[data-theme="summer"] {
+    --bg-color: #1a472a;
+    --text-color: #e8f5e9;
+    --prompt-color: #ffd700;
+    --accent-color: #ffd700;
+    --border-color: #2e7d32;
+    --glow-color: rgba(255, 215, 0, 0.5);
+}
+
+/* Dracula theme */
+[data-theme="dracula"] {
+    --bg-color: #282a36;
+    --text-color: #f8f8f2;
+    --prompt-color: #bd93f9;
+    --accent-color: #ff79c6;
+    --border-color: #44475a;
+    --glow-color: rgba(189, 147, 249, 0.5);
+}
+
+/* Winter theme */
+[data-theme="winter"] {
+    --bg-color: #1a1a2e;
+    --text-color: #e6e6e6;
+    --prompt-color: #4dccff;
+    --accent-color: #4dccff;
+    --border-color: #2a2a3e;
+    --glow-color: rgba(77, 204, 255, 0.5);
+}
+
+/* Apply theme colors */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.terminal {
+    border-color: var(--border-color);
+    box-shadow: 0 0 10px var(--glow-color);
+}
+
+.prompt {
+    color: var(--text-color);
+}
+
+#input {
+    color: var(--text-color);
+    caret-color: var(--text-color);
+    margin-left: 16px;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
+
+/* Random glitch effect for text */
+@keyframes random-glitch {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-2px, 2px);
+    }
+    40% {
+        transform: translate(-2px, -2px);
+    }
+    60% {
+        transform: translate(2px, 2px);
+    }
+    80% {
+        transform: translate(2px, -2px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+.scanlines::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        var(--scanline-color),
+        var(--scanline-color) 1px,
+        rgba(0, 0, 0, 0.05) 2px
+    );
+    pointer-events: none;
+}
+
+/* Remove hover effects */
+.output-line:hover {
+    animation: none;
+}
+
+/* Random glitch animation for hover effects */
+@keyframes randomGlitch {
+    0% {
+        transform: translate(0);
+        text-shadow: 0.05em 0 0 #ff00c1, -0.05em -0.025em 0 #00fff9, -0.025em 0.05em 0 #fcff00;
+    }
+    10% {
+        transform: translate(-2px, 2px);
+        text-shadow: -0.05em -0.025em 0 #ff00c1, 0.025em 0.025em 0 #00fff9, -0.05em -0.05em 0 #fcff00;
+    }
+    20% {
+        transform: translate(2px, -2px);
+        text-shadow: 0.025em 0.05em 0 #ff00c1, 0.05em 0 0 #00fff9, 0 -0.05em 0 #fcff00;
+    }
+    30% {
+        transform: translate(-2px, -2px);
+        text-shadow: -0.025em 0 0 #ff00c1, -0.025em -0.025em 0 #00fff9, -0.025em -0.05em 0 #fcff00;
+    }
+    40% {
+        transform: translate(2px, 2px);
+        text-shadow: 0.05em 0 0 #ff00c1, -0.05em -0.025em 0 #00fff9, -0.025em 0.05em 0 #fcff00;
+    }
+    50% {
+        transform: translate(0);
+        text-shadow: -0.05em -0.025em 0 #ff00c1, 0.025em 0.025em 0 #00fff9, -0.05em -0.05em 0 #fcff00;
+    }
+    60% {
+        transform: translate(0);
+        text-shadow: 0.025em 0.05em 0 #ff00c1, 0.05em 0 0 #00fff9, 0 -0.05em 0 #fcff00;
+    }
+    70% {
+        transform: translate(0);
+        text-shadow: -0.025em 0 0 #ff00c1, -0.025em -0.025em 0 #00fff9, -0.025em -0.05em 0 #fcff00;
+    }
+    80% {
+        transform: translate(0);
+        text-shadow: 0.05em 0 0 #ff00c1, -0.05em -0.025em 0 #00fff9, -0.025em 0.05em 0 #fcff00;
+    }
+    90% {
+        transform: translate(0);
+        text-shadow: -0.05em -0.025em 0 #ff00c1, 0.025em 0.025em 0 #00fff9, -0.05em -0.05em 0 #fcff00;
+    }
+    100% {
+        transform: translate(0);
+        text-shadow: 0.025em 0.05em 0 #ff00c1, 0.05em 0 0 #00fff9, 0 -0.05em 0 #fcff00;
+    }
+}
+
+/* Apply consistent styling to all command elements */
+.command, .prompt, #input, .output-line {
+    font-family: 'Fira Code', monospace;
+    font-size: inherit;
+    color: var(--text-color);
+    text-shadow: 0 0 5px var(--glow-color);
+}
