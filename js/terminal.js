@@ -18,35 +18,29 @@ const Terminal = {
             Commands.setTheme(savedTheme);
         }
 
-        // Initialize auto-scroll from localStorage or default to true
         this.autoScrollEnabled = localStorage.getItem('autoScrollEnabled') !== 'false';
-        
+
         this.setupEventListeners();
         this.updatePrompt();
-        
-        // Add a scroll observer to detect when user manually scrolls
         this.setupScrollObserver();
     },
 
     setupEventListeners() {
         this.inputField.addEventListener("keydown", (event) => this.handleKeyDown(event));
-        
-        // Add keyboard shortcut for toggling auto-scroll (Ctrl+S)
+
+        // Keyboard shortcut for toggling auto-scroll (Ctrl+S)
         document.addEventListener("keydown", (event) => {
             if (event.ctrlKey && event.key === 's') {
-                event.preventDefault(); // Prevent browser's save dialog
+                event.preventDefault();
                 this.toggleAutoScroll();
-                this.addSystemMessage(`Auto-scroll ${this.autoScrollEnabled ? 'enabled' : 'disabled'}`); 
+                this.addSystemMessage(`Auto-scroll ${this.autoScrollEnabled ? 'enabled' : 'disabled'}`);
             }
         });
     },
-    
+
     setupScrollObserver() {
-        // When user manually scrolls up, temporarily disable auto-scroll
         this.outputDiv.addEventListener('scroll', () => {
             const isScrolledToBottom = this.isScrolledToBottom();
-            
-            // If user scrolls up and auto-scroll is enabled, temporarily disable it
             if (!isScrolledToBottom && this.autoScrollEnabled) {
                 this.autoScrollEnabled = false;
                 localStorage.setItem('autoScrollEnabled', 'false');
@@ -54,16 +48,14 @@ const Terminal = {
             }
         });
     },
-    
+
     isScrolledToBottom() {
         const scrollTop = this.outputDiv.scrollTop;
         const scrollHeight = this.outputDiv.scrollHeight;
         const clientHeight = this.outputDiv.clientHeight;
-        
-        // Allow a small tolerance of 10px
         return scrollHeight - scrollTop - clientHeight < 10;
     },
-    
+
     toggleAutoScroll() {
         this.autoScrollEnabled = !this.autoScrollEnabled;
         localStorage.setItem('autoScrollEnabled', this.autoScrollEnabled.toString());
@@ -71,20 +63,22 @@ const Terminal = {
             this.scrollToBottom();
         }
     },
-    
+
     scrollToBottom() {
-        if (this.autoScrollEnabled) {
-            this.outputDiv.scrollTop = this.outputDiv.scrollHeight;
+        this.outputDiv.scrollTop = this.outputDiv.scrollHeight;
+        if (this.terminal) {
+            this.terminal.scrollTop = this.terminal.scrollHeight;
         }
+        window.scrollTo(0, document.body.scrollHeight);
     },
-    
+
     addSystemMessage(message) {
         const systemMessageElement = document.createElement('div');
         systemMessageElement.className = 'output-line system-message';
         systemMessageElement.innerHTML = `<pre>[System] ${message}</pre>`;
         this.outputDiv.appendChild(systemMessageElement);
         this.scrollToBottom();
-        
+
         // Remove system message after 3 seconds
         setTimeout(() => {
             if (systemMessageElement.parentNode === this.outputDiv) {
@@ -157,6 +151,8 @@ const Terminal = {
         if (output) {
             this.outputDiv.innerHTML += output;
             this.scrollToBottom();
+            setTimeout(() => this.scrollToBottom(), 10);
+            setTimeout(() => this.scrollToBottom(), 100);
         }
     },
 
@@ -170,7 +166,7 @@ const Terminal = {
 
         if (parts.length === 1) {
 
-            this.autocompleteResults = Object.keys(Commands.getCommands()).filter(cmd => 
+            this.autocompleteResults = Object.keys(Commands.getCommands()).filter(cmd =>
                 cmd.startsWith(command)
             );
         } else {
@@ -178,7 +174,7 @@ const Terminal = {
             let current = FileSystem.getCurrentDirectoryContents();
 
             if (typeof current === "object") {
-                this.autocompleteResults = Object.keys(current).filter(item => 
+                this.autocompleteResults = Object.keys(current).filter(item =>
                     item.startsWith(partial)
                 );
             }
