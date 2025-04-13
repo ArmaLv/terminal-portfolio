@@ -1,6 +1,7 @@
 # Terminal Portfolio
 
-A stylish, interactive terminal-based portfolio website with a retro CRT aesthetic. This project simulates a command-line interface in the browser, allowing visitors to navigate and explore content using familiar terminal commands.
+A stylish, interactive terminal-based portfolio website with a retro CRT aesthetic. This project simulates a command-line interface in the browser, allowing visitors to navigate content using familiar terminal commands.
+This project was made for fun and learning purposes. So it is not optimized for production use nor it is production ready. There are some features that are not implemented yet or are not working properly.
 
 ![Terminal Portfolio Screenshot Nr.1](assets/screenshot.png)
 ![Terminal Portfolio Screenshot Nr.2](assets/screenshot1.png)
@@ -12,7 +13,7 @@ A stylish, interactive terminal-based portfolio website with a retro CRT aesthet
 - **Multiple Themes**: Choose from 5 different themes (Cyberpunk, Sakura, Summer, Dracula, Winter)
 - **CRT Effects**: Retro scanlines, flicker, and glitch animations for an authentic old-school terminal feel
 - **Responsive Design**: Works on desktop and mobile devices
-- <del>**Smart Auto-Scroll**: Automatically scrolls to show new content with intelligent user control</del> (Work In Progress)
+- **Smart Auto-Scroll**: Automatically scrolls to show new content with intelligent user control
 - **Loading Screen**: Boot-up animation simulating a system startup
 
 ## Commands
@@ -61,10 +62,6 @@ The portfolio is organized into a virtual file system:
 The terminal includes a smart auto-scroll system:
 
 - Automatically scrolls to show new content
-- Disables when user manually scrolls up
-- Can be toggled with `Ctrl+S`
-- Shows temporary system notifications when auto-scroll state changes
-- Remembers user preference between sessions
 
 ## Technical Implementation
 
@@ -88,26 +85,26 @@ Works in all modern browsers including:
 2. Open `index.html` in your browser
 3. No build process or dependencies required!
 
+## Contributors
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/orderlaw">
+        <img src="https://avatars.githubusercontent.com/u/102177927?v=4" width="100px;" alt="orderlaw"/>
+        <br />
+        <sub><b>orderlaw</b></sub>
+      </a>
+    </td>
+  </tr>
+</table>
+
 ## License
 
 ```
 Copyright (c) 2025 ArmaLv
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+You are free to use this project for personal or commercial purposes. Without any warranty or responsibility.
+You can modify, distribute, and use this project as you see fit.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
 ```
