@@ -28,7 +28,6 @@ const Terminal = {
     setupEventListeners() {
         this.inputField.addEventListener("keydown", (event) => this.handleKeyDown(event));
 
-        // Keyboard shortcut for toggling auto-scroll (Ctrl+S)
         document.addEventListener("keydown", (event) => {
             if (event.ctrlKey && event.key === 's') {
                 event.preventDefault();
@@ -78,8 +77,6 @@ const Terminal = {
         systemMessageElement.innerHTML = `<pre>[System] ${message}</pre>`;
         this.outputDiv.appendChild(systemMessageElement);
         this.scrollToBottom();
-
-        // Remove system message after 3 seconds
         setTimeout(() => {
             if (systemMessageElement.parentNode === this.outputDiv) {
                 this.outputDiv.removeChild(systemMessageElement);
