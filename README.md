@@ -89,7 +89,7 @@ Works in all modern browsers including:
 
 <table>
   <tr>
-    <td align="center">
+    <td align="center" style="border-radius: 50%;">
       <a href="https://github.com/orderlaw">
         <img src="https://avatars.githubusercontent.com/u/102177927?v=4" width="100px;" alt="orderlaw"/>
         <br />
